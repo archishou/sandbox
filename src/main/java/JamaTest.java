@@ -15,6 +15,7 @@ public class JamaTest {
     );
 
     public static void main(String[] args) {
+        // Passes as of 1/19/20
         System.out.println("X: " + coeffs.solve(sol).get(0, 0));
         System.out.println("Y: " + coeffs.solve(sol).get(1, 0));
     }
