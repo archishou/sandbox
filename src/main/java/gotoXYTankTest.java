@@ -1,9 +1,9 @@
 public class gotoXYTankTest {
     public static void main(String[] args) {
-        MasqVector current = new MasqVector(5, 5);
+        MasqVector current = new MasqVector(0, 0);
         MasqVector initial = new MasqVector(0, 0);
-        MasqVector target = new MasqVector(20, 20);
-        double heading = 45;
+        MasqVector target = new MasqVector(0, 20);
+        double heading = 0;
         heading = Math.toRadians(heading);
         double[] power = calculate(current, initial, target, heading);
         System.out.println("Left Power: " + power[0]);
