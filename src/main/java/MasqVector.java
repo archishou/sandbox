@@ -81,4 +81,9 @@ public class MasqVector {
         return Math.toDegrees(Math.atan(getY() / getX()));
     }
 
+    @Override
+    public String toString() {
+        return "X: " + getX() + " Y: " + getY();
+    }
+
 }

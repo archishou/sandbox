@@ -1,4 +1,4 @@
-public class Main {
+public class PolynomialTest {
     public static void main(String... args) {
         MasqPolynomial x = new MasqPolynomial();
         // This should be f(x) = x + 4

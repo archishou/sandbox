@@ -27,19 +27,13 @@ public class MasqPIDController {
     }
 
     //For testing
-    public double getOutput (double error, double timeChange) {
+    public double getOutput (double error) {
         this.timeChange = timeChange;
         deriv = (error - prevError) / timeChange;
         prevError = error;
         prevD = deriv;
-        return MasqUtils.clip((error * kp) +
-                (ki * integrator.getIntegral(error, timeChange)) +
-                (kd * deriv), -1, 1);
+        return (error * kp);
     }
-
-
-
-
 
     public double[] getConstants() {
         return new double[]{kp, ki, kd};
