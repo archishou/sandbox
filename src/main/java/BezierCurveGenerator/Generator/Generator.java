@@ -1,6 +1,7 @@
 package BezierCurveGenerator.Generator;
 
 import BezierCurveGenerator.Point;
+import BezierCurveGenerator.Segment;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.List;
 public class Generator {
     private List<Point> knots = new ArrayList<>();
 
-    public void generateCurve() {
-
+    public List<Segment> generateSegments() {
+        return null;
     }
 
     public Point getXYForT(int t) {
