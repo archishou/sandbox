@@ -1,4 +1,4 @@
-package BezierCurveGenerator;
+package BezierCurveGenerator.Visualizer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,6 @@ public class PaintFrame extends JFrame {
 
     public void paint(Graphics g) {
         g.setColor(Color.red);
-
         int index = 0;
         while (index < xCoordinates.size()) {
             g.fillOval(xCoordinates.get(index), yCoordinates.get(index), POINT_RADIUS, POINT_RADIUS);
