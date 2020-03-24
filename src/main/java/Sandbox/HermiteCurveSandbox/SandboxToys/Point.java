@@ -1,16 +1,10 @@
-package BezierCurveGenerator;
+package Sandbox.HermiteCurveSandbox.SandboxToys;
 
 import java.awt.*;
 
 public class Point {
-    private double x, y;
+    private int x, y;
     private Color color;
-
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.color = Color.BLACK;
-    }
 
     public Point(int x, int y, Color color) {
         this.x = x;
@@ -18,19 +12,19 @@ public class Point {
         this.color = color;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 

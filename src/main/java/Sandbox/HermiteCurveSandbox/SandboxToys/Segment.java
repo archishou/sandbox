@@ -1,4 +1,4 @@
-package BezierCurveGenerator;
+package Sandbox.HermiteCurveSandbox.SandboxToys;
 
 public class Segment {
     double a, b, c, d;
@@ -40,9 +40,5 @@ public class Segment {
 
     public void setD(double d) {
         this.d = d;
-    }
-
-    public double compute(double t) {
-        return (a * Math.pow(t, 3)) + (b * Math.pow(t, 2)) + (c * t) + d;
     }
 }

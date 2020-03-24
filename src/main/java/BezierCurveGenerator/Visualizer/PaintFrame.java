@@ -25,7 +25,7 @@ public class PaintFrame extends JFrame {
         while (index < points.size()) {
             Point p = points.get(index);
             g.setColor(p.getColor());
-            g.fillOval(p.getX(), p.getY(), POINT_RADIUS, POINT_RADIUS);
+            ///g.fillOval(p.getX(), p.getY(), POINT_RADIUS, POINT_RADIUS);
         }
     }
 
