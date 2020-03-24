@@ -7,7 +7,7 @@ import Jama.Matrix;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sanbox {
+public class Hardcoded3PointGenerator {
     static Matrix constraintMatrix = new Matrix(new double[][]{
             {1, 0, 0, 0, 0, 0, 0, 0},
             {1, 1, 1, 1, 0, 0, 0, 0},
@@ -69,7 +69,7 @@ public class Sanbox {
             points.add(new Point(seg2X.compute(t), seg2Y.compute(t)));
             t += resolution;
         }
-
+        System.out.println(solutionsY.getArray().length);
         for (Point p : points) {
             System.out.printf("(%f, %f), ", p.getX(), p.getY());
         }
