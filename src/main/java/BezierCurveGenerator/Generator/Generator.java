@@ -1,22 +1,23 @@
 package BezierCurveGenerator.Generator;
 
+import BezierCurveGenerator.Point;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Generator {
-    List<Integer> xKnots = new ArrayList<>();
-    List<Integer> yKnots = new ArrayList<>();
+    private List<Point> knots = new ArrayList<>();
 
     public void generateCurve() {
 
     }
 
-    public void addKnot(int x, int y) {
-        xKnots.add(x);
-        yKnots.add(y);
+    public Point getXYForT(int t) {
+        return new Point(0, 0, Color.BLACK);
     }
 
-    public int[] getXYForT(int t) {
-        return new int[]{0, 0};
+    public void addKnot(Point p) {
+        knots.add(p);
     }
 }

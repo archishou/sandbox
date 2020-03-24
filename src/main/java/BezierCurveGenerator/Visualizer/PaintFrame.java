@@ -1,13 +1,14 @@
 package BezierCurveGenerator.Visualizer;
 
+import BezierCurveGenerator.Point;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PaintFrame extends JFrame {
-    private List<Integer> xCoordinates = new ArrayList<>();
-    private List<Integer> yCoordinates = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
     private final int FRAME_SIZE = 1000;
     private final int POINT_RADIUS = 10;
     PaintFrame() {
@@ -20,15 +21,17 @@ public class PaintFrame extends JFrame {
     }
 
     public void paint(Graphics g) {
-        g.setColor(Color.red);
         int index = 0;
-        while (index < xCoordinates.size()) {
-            g.fillOval(xCoordinates.get(index), yCoordinates.get(index), POINT_RADIUS, POINT_RADIUS);
+        while (index < points.size()) {
+            Point p = points.get(index);
+            g.setColor(p.getColor());
+            g.fillOval(p.getX(), p.getY(), POINT_RADIUS, POINT_RADIUS);
         }
     }
 
-    public void appendCoordinate(int x, int y) {
-        xCoordinates.add(x + (FRAME_SIZE / 2));
-        yCoordinates.add(y + (FRAME_SIZE / 2));
+    public void appendCoordinate(Point point) {
+        point.setX(point.getX() + (FRAME_SIZE / 2));
+        point.setY(point.getY() + (FRAME_SIZE / 2));
+        points.add(point);
     }
 }
