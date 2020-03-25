@@ -3,8 +3,14 @@ package Sandbox.HermiteCurveSandbox.SandboxToys;
 import java.awt.*;
 
 public class Point {
-    private int x, y;
+    private double x, y;
     private Color color;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+        this.color = Color.BLACK;
+    }
 
     public Point(int x, int y, Color color) {
         this.x = x;
@@ -12,19 +18,19 @@ public class Point {
         this.color = color;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 

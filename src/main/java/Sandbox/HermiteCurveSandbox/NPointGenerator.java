@@ -1,7 +1,7 @@
 package Sandbox.HermiteCurveSandbox;
 
-import BezierCurveGenerator.Point;
-import BezierCurveGenerator.Segment;
+import Sandbox.HermiteCurveSandbox.SandboxToys.Point;
+import Sandbox.HermiteCurveSandbox.SandboxToys.Segment;
 import Jama.Matrix;
 
 import java.util.ArrayList;
@@ -114,7 +114,7 @@ public class NPointGenerator {
         List<Point> points = new ArrayList<>();
 
         double t = 0;
-        double resolution = 0.1;
+        double resolution = 0.05;
         // segments = knots - 1
         int n = knots.size() - 1;
         int index = 0;
