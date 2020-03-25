@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NPointGenerator {
-    static List<Point> knots = new ArrayList<>();
+    private static List<Point> knots = new ArrayList<>();
 
     public static void main(String[] args) {
         knots.add(new Point(0, 0));
+        knots.add(new Point(20, 50));
         knots.add(new Point(0, 50));
-        knots.add(new Point(50, 50));
+
         List<Double> xs = new ArrayList<>();
         List<Double> ys = new ArrayList<>();
         for (Point p : knots) {
@@ -27,6 +28,7 @@ public class NPointGenerator {
 
         double t = 0;
         double resolution = 0.1;
+        // segments = knots - 1
         int n = knots.size() - 1;
         int index = 0;
         while (index < n) {
@@ -43,16 +45,34 @@ public class NPointGenerator {
     }
 
     private static Matrix generateConstraintMatrix(List<Double> ns) {
-        return new Matrix(new double[][]{
-                {1, 0, 0, 0, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {0, 1, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 1, 0, 0, 0},
-                {0, 0, 0, 0, 1, 1, 1, 1},
-                {0, 0, 0, 0, 0, 1, 2, 3},
-                {0, 1, 2, 3, 0, -1, 0, 0},
-                {0, 0, 2, 6, 0, 0, -2, 0}
-        });
+        // Each point apart from the inital point, requires 4 constraints. N represents the number of constraints.
+        int numPoints = ns.size();
+        int n = (numPoints - 1) * 4;
+        double matrix[][] = new double[n][n];
+        if (numPoints == 1) return null;
+        // Fill constraints for left segment.
+        matrix[0][0] = 1;
+        matrix[1][0] = 1;
+        matrix[1][1] = 1;
+        matrix[1][2] = 1;
+        matrix[1][3] = 1;
+        matrix[2][1] = 1;
+
+        if (numPoints > 3) {
+
+        }
+
+        if (numPoints > 2) {
+            matrix[n][n-3] = 1;
+            matrix[n-1][n] = 1;
+            matrix[n-1][n-1] = 1;
+            matrix[n-1][n-2] = 1;
+            matrix[n-1][n-3] = 1;
+            matrix[n-2][n] = 3;
+            matrix[n-2][n-1] = 2;
+            matrix[n-2][n-2] = 1;
+        }
+
     }
 
     private static Matrix generateSolutionsMatrix(List<Double> ns) {
