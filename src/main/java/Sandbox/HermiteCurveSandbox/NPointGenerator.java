@@ -12,12 +12,9 @@ public class NPointGenerator {
 
     public static void main(String[] args) {
         knots.add(new Point(0, 0));
-        knots.add(new Point(20, 50));
-        knots.add(new Point(50, 50));
-        knots.add(new Point(80, 50));
-        knots.add(new Point(30, 30));
-
+        knots.add(new Point(20, 20));
         List<Point> points = getPoints(knots);
+        if (points == null) return;
         for (Point p : points) {
             System.out.printf("(%f, %f), ", p.getX(), p.getY());
         }
@@ -89,6 +86,7 @@ public class NPointGenerator {
         List<Segment> segments = new ArrayList<>();
         Matrix constraints = generateConstraintMatrix(ns);
         Matrix solutions = generateSolutionsMatrix(ns);
+        if (constraints == null) return null;
         Matrix coeffs = constraints.solve(solutions);
         int n = coeffs.getArray().length;
         int index = 0;
@@ -109,10 +107,11 @@ public class NPointGenerator {
 
         List<Segment> xSegments = getSegments(xs);
         List<Segment> ySegments = getSegments(ys);
+        if (xSegments == null || ySegments == null) return null;
         List<Point> points = new ArrayList<>();
 
         double t = 0;
-        double resolution = 0.05;
+        double resolution = 0.01;
         // segments = knots - 1
         int n = knots.size() - 1;
         int index = 0;
