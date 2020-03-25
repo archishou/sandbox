@@ -45,44 +45,59 @@ public class NPointGenerator {
     }
 
     private static Matrix generateConstraintMatrix(List<Double> ns) {
-        // Each point apart from the inital point, requires 4 constraints. N represents the number of constraints.
+        /*
+            x(t) = (n3*x^3)+(n2+x^2)+(n1*x)+n0
+            {1, 0, 0, 0, 0, 0, 0, 0}, | a0
+            {1, 1, 1, 1, 0, 0, 0, 0}, | a1
+            {0, 1, 0, 0, 0, 0, 0, 0}, |	a2
+            {0, 0, 0, 0, 1, 0, 0, 0}, |	a3
+            {0, 0, 0, 0, 1, 1, 1, 1}, |	b0
+            {0, 0, 0, 0, 0, 1, 2, 3}, |	b1
+            {0, 1, 2, 3, 0, -1, 0, 0},|	b2
+            {0, 0, 2, 6, 0, 0, -2, 0} | b3
+        */
+
+        // Each point apart from the initial point, requires 4 constraints. N represents the number of constraints.
         int numPoints = ns.size();
         int n = (numPoints - 1) * 4;
-        double matrix[][] = new double[n][n];
+        double matrix[][] = new double[n+1][n+1];
         if (numPoints == 1) return null;
-        // Fill constraints for left segment.
-        matrix[0][0] = 1;
-        matrix[1][0] = 1;
-        matrix[1][1] = 1;
-        matrix[1][2] = 1;
-        matrix[1][3] = 1;
-        matrix[2][1] = 1;
+        // Initial velocity = 0
+        matrix[0][1] = 1;
+        // Final velocity = 0
+        matrix[1][n] = 3;
+        matrix[1][n-1] = 2;
+        matrix[1][n-2] = 1;
 
-        if (numPoints > 3) {
+        // We filled rows 0 & 1 with initial and final velocity constraint.
+        int index = 2;
 
+        while (index < n) {
+            // Start of segment is equal to initial point.
+            int segmentIndexStart =
+            matrix[index][segmentIndexStart] = 1;
+            index++;
+            // End of segment is equal to destination.
+            int segmentCoeffIndex = 0;
+            while (segmentCoeffIndex < 4) {
+                System.out.printf("Segment Coeff Index %d \n", segmentCoeffIndex);
+                matrix[index][segmentCoeffIndex + segmentIndexStart] = 1;
+                segmentCoeffIndex++;
+            }
+            index++;
         }
-
-        if (numPoints > 2) {
-            matrix[n][n-3] = 1;
-            matrix[n-1][n] = 1;
-            matrix[n-1][n-1] = 1;
-            matrix[n-1][n-2] = 1;
-            matrix[n-1][n-3] = 1;
-            matrix[n-2][n] = 3;
-            matrix[n-2][n-1] = 2;
-            matrix[n-2][n-2] = 1;
-        }
-
+        printMatrix(matrix);
+        return new Matrix(matrix);
     }
 
     private static Matrix generateSolutionsMatrix(List<Double> ns) {
         return new Matrix(new double[][]{
+                {0},
+                {0},
                 {ns.get(0)},
                 {ns.get(1)},
-                {0},
                 {ns.get(1)},
                 {ns.get(2)},
-                {0},
                 {0},
                 {0}
         });
@@ -100,5 +115,9 @@ public class NPointGenerator {
             index += 4;
         }
         return segments;
+    }
+
+    private static void printMatrix(double[][] matrix) {
+        for (double[] aMatrix : matrix) for (double anAMatrix : aMatrix) System.out.print(anAMatrix + " ");
     }
 }
