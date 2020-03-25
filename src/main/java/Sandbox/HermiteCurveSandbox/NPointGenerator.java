@@ -13,32 +13,11 @@ public class NPointGenerator {
     public static void main(String[] args) {
         knots.add(new Point(0, 0));
         knots.add(new Point(20, 50));
+        knots.add(new Point(50, 50));
+        knots.add(new Point(80, 50));
+        knots.add(new Point(30, 30));
 
-
-        List<Double> xs = new ArrayList<>();
-        List<Double> ys = new ArrayList<>();
-        for (Point p : knots) {
-            xs.add(p.getX());
-            ys.add(p.getY());
-        }
-
-        List<Segment> xSegments = getSegments(xs);
-        List<Segment> ySegments = getSegments(ys);
-        List<Point> points = new ArrayList<>();
-
-        double t = 0;
-        double resolution = 0.1;
-        // segments = knots - 1
-        int n = knots.size() - 1;
-        int index = 0;
-        while (index < n) {
-            while (t < 1) {
-                points.add(new Point(xSegments.get(index).compute(t), ySegments.get(index).compute(t)));
-                t += resolution;
-            }
-            t = 0;
-            index++;
-        }
+        List<Point> points = getPoints(knots);
         for (Point p : points) {
             System.out.printf("(%f, %f), ", p.getX(), p.getY());
         }
@@ -122,12 +101,40 @@ public class NPointGenerator {
         return segments;
     }
 
+    private static List<Point> getPoints(List<Point> knots) {
+        List<Double> xs = new ArrayList<>();
+        List<Double> ys = new ArrayList<>();
+        for (Point p : knots) {
+            xs.add(p.getX());
+            ys.add(p.getY());
+        }
+
+        List<Segment> xSegments = getSegments(xs);
+        List<Segment> ySegments = getSegments(ys);
+        List<Point> points = new ArrayList<>();
+
+        double t = 0;
+        double resolution = 0.1;
+        // segments = knots - 1
+        int n = knots.size() - 1;
+        int index = 0;
+        while (index < n) {
+            while (t < 1) {
+                points.add(new Point(xSegments.get(index).compute(t), ySegments.get(index).compute(t)));
+                t += resolution;
+            }
+            t = 0;
+            index++;
+        }
+        return points;
+    }
+
     private static void printMatrix(double[][] matrix) {
         for (double[] aMatrix : matrix) {
             for (double anAMatrix : aMatrix)
                 System.out.print(anAMatrix + " ");
             System.out.println();
         }
-
     }
+
 }
