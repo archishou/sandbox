@@ -77,8 +77,6 @@ public class NPointGenerator {
         double[][] matrix = new double[n][1];
         int pointIndex = 0, solutionIndex = 0;
         while (solutionIndex < n) {
-            matrix[solutionIndex][0] = 0;
-            matrix[solutionIndex + 1][0] = 0;
             matrix[solutionIndex + 2][0] = ns.get(pointIndex);
             matrix[solutionIndex + 3][0] = ns.get(pointIndex + 1);
             solutionIndex += 4;
